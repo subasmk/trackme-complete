@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Simplified, flat-color sloth face for contexts that can't run Flutter's
+  CustomPainter (RemoteViews widgets, the launcher icon). Same palette and
+  proportions as the animated mascot in widgets/sloth_mascot.dart:
+  round furry head, dark "mask" eye patches, cream snout, small dot eyes.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Ears (drawn first, sit behind the face) -->
+    <path
+        android:pathData="M14,28 a12,12 0 1,0 24,0 a12,12 0 1,0 -24,0 Z"
+        android:fillColor="@color/sloth_fur" />
+    <path
+        android:pathData="M62,28 a12,12 0 1,0 24,0 a12,12 0 1,0 -24,0 Z"
+        android:fillColor="@color/sloth_fur" />
+
+    <!-- Base furry head -->
+    <path
+        android:pathData="M10,54 a40,40 0 1,0 80,0 a40,40 0 1,0 -80,0 Z"
+        android:fillColor="@color/sloth_fur" />
+
+    <!-- Cream face patch -->
+    <path
+        android:pathData="M23,58 a27,23 0 1,0 54,0 a27,23 0 1,0 -54,0 Z"
+        android:fillColor="@color/sloth_face" />
+
+    <!-- Dark "mask" eye patches -->
+    <path
+        android:pathData="M29,50 a9,12 0 1,0 18,0 a9,12 0 1,0 -18,0 Z"
+        android:fillColor="@color/sloth_eye_patch" />
+    <path
+        android:pathData="M53,50 a9,12 0 1,0 18,0 a9,12 0 1,0 -18,0 Z"
+        android:fillColor="@color/sloth_eye_patch" />
+
+    <!-- Rosy cheeks -->
+    <path
+        android:pathData="M23.5,61 a4.5,4.5 0 1,0 9,0 a4.5,4.5 0 1,0 -9,0 Z"
+        android:fillColor="@color/sloth_cheek" />
+    <path
+        android:pathData="M67.5,61 a4.5,4.5 0 1,0 9,0 a4.5,4.5 0 1,0 -9,0 Z"
+        android:fillColor="@color/sloth_cheek" />
+
+    <!-- Eyes -->
+    <path
+        android:pathData="M34.8,49 a3.2,3.2 0 1,0 6.4,0 a3.2,3.2 0 1,0 -6.4,0 Z"
+        android:fillColor="@color/sloth_eye" />
+    <path
+        android:pathData="M58.8,49 a3.2,3.2 0 1,0 6.4,0 a3.2,3.2 0 1,0 -6.4,0 Z"
+        android:fillColor="@color/sloth_eye" />
+
+    <!-- Nose -->
+    <path
+        android:pathData="M45.5,63 a4.5,3.2 0 1,0 9,0 a4.5,3.2 0 1,0 -9,0 Z"
+        android:fillColor="@color/sloth_eye_patch" />
+
+    <!-- Smile -->
+    <path
+        android:pathData="M40,67 Q50,74 60,67"
+        android:strokeColor="@color/sloth_eye_patch"
+        android:strokeWidth="2.4"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+</vector>

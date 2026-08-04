@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Large overview widget. This intentionally uses only framework views and
+  RemoteViews-safe attributes so it renders on launchers without starting
+  Flutter. The five cards mirror the stacked streak cards in the reference
+  screenshot; fewer goals simply hide the unused cards.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:id="@+id/overview_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:id="@+id/overview_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- The five cards intentionally share the same structure. -->
+            <LinearLayout
+                android:id="@+id/goal_card_1"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_widget_theme_mint"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                android:paddingEnd="6dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/goal_1_flame"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🔥"
+                            android:textSize="18sp" />
+                        <TextView
+                            android:id="@+id/goal_1_streak"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="0"
+                            android:textColor="@color/text_primary"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/goal_1_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="days"
+                            android:textColor="@color/text_primary"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/goal_1_title"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Goal"
+                        android:textColor="@color/text_primary"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/goal_1_week"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="M  T  W  T  F  S  S"
+                        android:textColor="#DDFFFFFF"
+                        android:textSize="9sp" />
+                    <TextView
+                        android:id="@+id/goal_1_checks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✓  ✓  ✓  ✓  ✓  ○  ○"
+                        android:textColor="#EEFFFFFF"
+                        android:textSize="11sp" />
+                </LinearLayout>
+                <ImageView
+                    android:id="@+id/goal_1_sloth"
+                    android:layout_width="96dp"
+                    android:layout_height="88dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/sloth_happy" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/goal_card_2"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_widget_theme_berry"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                android:paddingEnd="6dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView android:id="@+id/goal_2_flame" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🔥" android:textSize="18sp" />
+                        <TextView android:id="@+id/goal_2_streak" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="5dp" android:fontFamily="sans-serif-black" android:text="0" android:textColor="@color/text_primary" android:textSize="25sp" android:textStyle="bold" />
+                        <TextView android:id="@+id/goal_2_unit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="4dp" android:text="days" android:textColor="@color/text_primary" android:textSize="14sp" />
+                    </LinearLayout>
+                    <TextView android:id="@+id/goal_2_title" android:layout_width="160dp" android:layout_height="wrap_content" android:ellipsize="end" android:maxLines="1" android:text="Goal" android:textColor="@color/text_primary" android:textSize="12sp" />
+                    <TextView android:id="@+id/goal_2_week" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:fontFamily="sans-serif-medium" android:text="M  T  W  T  F  S  S" android:textColor="#DDFFFFFF" android:textSize="9sp" />
+                    <TextView android:id="@+id/goal_2_checks" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="✓  ✓  ✓  ✓  ✓  ○  ○" android:textColor="#EEFFFFFF" android:textSize="11sp" />
+                </LinearLayout>
+                <ImageView android:id="@+id/goal_2_sloth" android:layout_width="96dp" android:layout_height="88dp" android:scaleType="fitCenter" android:src="@drawable/sloth_playful" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/goal_card_3"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_widget_theme_sky"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                android:paddingEnd="6dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+                        <TextView android:id="@+id/goal_3_flame" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🔥" android:textSize="18sp" />
+                        <TextView android:id="@+id/goal_3_streak" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="5dp" android:fontFamily="sans-serif-black" android:text="0" android:textColor="@color/text_primary" android:textSize="25sp" android:textStyle="bold" />
+                        <TextView android:id="@+id/goal_3_unit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="4dp" android:text="days" android:textColor="@color/text_primary" android:textSize="14sp" />
+                    </LinearLayout>
+                    <TextView android:id="@+id/goal_3_title" android:layout_width="160dp" android:layout_height="wrap_content" android:ellipsize="end" android:maxLines="1" android:text="Goal" android:textColor="@color/text_primary" android:textSize="12sp" />
+                    <TextView android:id="@+id/goal_3_week" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:fontFamily="sans-serif-medium" android:text="M  T  W  T  F  S  S" android:textColor="#DDFFFFFF" android:textSize="9sp" />
+                    <TextView android:id="@+id/goal_3_checks" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="✓  ✓  ✓  ✓  ✓  ○  ○" android:textColor="#EEFFFFFF" android:textSize="11sp" />
+                </LinearLayout>
+                <ImageView android:id="@+id/goal_3_sloth" android:layout_width="96dp" android:layout_height="88dp" android:scaleType="fitCenter" android:src="@drawable/sloth_happy" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/goal_card_4"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_widget_theme_flame"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                android:paddingEnd="6dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+                        <TextView android:id="@+id/goal_4_flame" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🔥" android:textSize="18sp" />
+                        <TextView android:id="@+id/goal_4_streak" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="5dp" android:fontFamily="sans-serif-black" android:text="0" android:textColor="@color/text_primary" android:textSize="25sp" android:textStyle="bold" />
+                        <TextView android:id="@+id/goal_4_unit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="4dp" android:text="days" android:textColor="@color/text_primary" android:textSize="14sp" />
+                    </LinearLayout>
+                    <TextView android:id="@+id/goal_4_title" android:layout_width="160dp" android:layout_height="wrap_content" android:ellipsize="end" android:maxLines="1" android:text="Goal" android:textColor="@color/text_primary" android:textSize="12sp" />
+                    <TextView android:id="@+id/goal_4_week" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:fontFamily="sans-serif-medium" android:text="M  T  W  T  F  S  S" android:textColor="#DDFFFFFF" android:textSize="9sp" />
+                    <TextView android:id="@+id/goal_4_checks" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="✓  ✓  ✓  ✓  ✓  ○  ○" android:textColor="#EEFFFFFF" android:textSize="11sp" />
+                </LinearLayout>
+                <ImageView android:id="@+id/goal_4_sloth" android:layout_width="96dp" android:layout_height="88dp" android:scaleType="fitCenter" android:src="@drawable/sloth_worried" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/goal_card_5"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_widget_blue_gradient"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                android:paddingEnd="6dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+                        <TextView android:id="@+id/goal_5_flame" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🔥" android:textSize="18sp" />
+                        <TextView android:id="@+id/goal_5_streak" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="5dp" android:fontFamily="sans-serif-black" android:text="0" android:textColor="@color/text_primary" android:textSize="25sp" android:textStyle="bold" />
+                        <TextView android:id="@+id/goal_5_unit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="4dp" android:text="days" android:textColor="@color/text_primary" android:textSize="14sp" />
+                    </LinearLayout>
+                    <TextView android:id="@+id/goal_5_title" android:layout_width="160dp" android:layout_height="wrap_content" android:ellipsize="end" android:maxLines="1" android:text="Goal" android:textColor="@color/text_primary" android:textSize="12sp" />
+                    <TextView android:id="@+id/goal_5_week" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:fontFamily="sans-serif-medium" android:text="M  T  W  T  F  S  S" android:textColor="#DDFFFFFF" android:textSize="9sp" />
+                    <TextView android:id="@+id/goal_5_checks" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="✓  ✓  ✓  ✓  ✓  ○  ○" android:textColor="#EEFFFFFF" android:textSize="11sp" />
+                </LinearLayout>
+                <ImageView android:id="@+id/goal_5_sloth" android:layout_width="96dp" android:layout_height="88dp" android:scaleType="fitCenter" android:src="@drawable/sloth_sleepy" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/completion_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:text="0/0 goals completed today"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+
+            <ProgressBar
+                android:id="@+id/completion_progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="5dp"
+                android:max="100"
+                android:progress="0"
+                android:progressDrawable="@drawable/progress_widget_overview" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Shown when the app has not synced any goals yet. -->
+    <LinearLayout
+        android:id="@+id/empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:visibility="gone">
+        <ImageView
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:layout_marginBottom="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/sloth_sleepy" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/widget_configure_empty"
+            android:textColor="@color/text_primary"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium" />
+    </LinearLayout>
+</FrameLayout>

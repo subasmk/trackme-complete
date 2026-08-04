@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--
+      Theme applied to MainActivity. TrackMe is dark-only by design (see
+      requirements: "Modern dark theme"), so this is used both as the
+      launch/splash background and the activity's running theme — there is
+      no separate "normal theme" swap.
+    -->
+    <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/background</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    </style>
+
+    <!--
+      Theme for WidgetConfigureActivity — the plain native picker shown
+      when a single-goal widget is first placed. Deliberately built on a
+      framework theme (not AppCompat/MaterialComponents) so the configure
+      flow needs no extra Gradle dependency; all actual styling is done
+      directly in the layout XML with the app's own color palette.
+    -->
+    <style name="WidgetConfigureTheme" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:navigationBarColor">@color/background</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+
+    <!--
+      Building blocks for the week-strip row inside widget_goal.xml (the
+      small/medium single-goal widget). Mirrors widgets/streak_card.dart's
+      _DayPill: a small letter label above a circular state indicator.
+      TrackMeGoalWidgetProvider swaps each day's circle background between
+      bg_day_pill_done / _today / _pending at update time.
+    -->
+    <style name="WidgetDayCell">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WidgetDayLetter">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_on_purple_muted</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="WidgetDayCircle">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:background">@drawable/bg_day_pill_pending</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+</resources>

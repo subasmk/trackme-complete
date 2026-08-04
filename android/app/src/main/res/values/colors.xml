@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core brand blues (replaces purple ramp) -->
+    <color name="purple">#1B7FD4</color>
+    <color name="purple_mid">#2D9BEF</color>
+    <color name="purple_light">#7EC8FF</color>
+    <color name="purple_deep">#0D5BA3</color>
+    <color name="purple_darker">#063370</color>
+
+    <!-- Background -->
+    <color name="background">#070D1A</color>
+    <color name="background_elevated">#0D1626</color>
+    <color name="surface">#0F1E35</color>
+    <color name="surface_light">#152843</color>
+
+    <!-- Text -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#9DC4E8</color>
+    <color name="text_muted">#5A8AAD</color>
+    <color name="text_on_purple_muted">#B4D7FF</color>
+
+    <!-- Status -->
+    <color name="success">#4ADE80</color>
+    <color name="danger">#FF6B6B</color>
+
+    <!-- Flame accent -->
+    <color name="flame_yellow">#FFC15E</color>
+    <color name="flame_orange">#FF7A45</color>
+
+    <!-- Goal widget theme colors -->
+    <color name="theme_mint_mid">#34D399</color>
+    <color name="theme_flame_mid">#FF7A45</color>
+    <color name="theme_sky_mid">#38BDF8</color>
+    <color name="theme_berry_mid">#E879F9</color>
+    <color name="theme_coral_mid">#FB7185</color>
+    <color name="theme_gold_mid">#FBBF24</color>
+
+    <!-- Widget color variants -->
+    <color name="theme_mint_light">#6EE7B7</color>
+    <color name="theme_mint_dark">#059669</color>
+    <color name="theme_flame_light">#FFB18C</color>
+    <color name="theme_flame_dark">#D9480F</color>
+    <color name="theme_berry_light">#F4B3FF</color>
+    <color name="theme_berry_dark">#C241F7</color>
+    <color name="theme_coral_light">#FBC1C9</color>
+    <color name="theme_coral_dark">#F43F5E</color>
+    <color name="theme_gold_light">#FDE68A</color>
+    <color name="theme_gold_dark">#F59E0B</color>
+
+    <!-- Icon and widget paint colors -->
+    <color name="white_14">#24FFFFFF</color>
+    <color name="sloth_fur">#C9A27A</color>
+    <color name="sloth_face">#F1DEC2</color>
+    <color name="sloth_eye_patch">#6B4A32</color>
+    <color name="sloth_cheek">#FF8A65</color>
+    <color name="sloth_eye">#3A2618</color>
+</resources>

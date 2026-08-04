@@ -1,0 +1,42 @@
+name: Build TrackMe APK
+
+# Runs automatically on every push, and can also be triggered manually from
+# the "Actions" tab on GitHub (the workflow_dispatch trigger below) without
+# needing to push a new commit each time.
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build release APK
+        run: flutter build apk --release
+
+      # Shows up as a downloadable .zip under the finished run's "Artifacts"
+      # section — unzip it to get app-release.apk.
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: trackme-apk
+          path: build/app/outputs/flutter-apk/app-release.apk

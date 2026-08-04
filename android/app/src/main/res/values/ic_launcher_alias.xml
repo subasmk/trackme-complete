@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Unqualified fallback definition of R.mipmap.ic_launcher, used on API
+      23-25 (pre-adaptive-icon devices). On API 26+, the more specific
+      mipmap-anydpi-v26/ic_launcher.xml adaptive icon takes precedence
+      automatically per Android's standard resource-qualifier rules.
+    -->
+    <item name="ic_launcher" type="mipmap">@mipmap/ic_launcher_legacy</item>
+</resources>
