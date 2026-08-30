@@ -46,4 +46,16 @@ class AppColors {
     end: Alignment.bottomRight,
     colors: [Color(0xFF1B7FD4), Color(0xFF0D5BA3)],
   );
+
+  /// Circular glow gradient used behind the sloth mascot on the
+  /// home screen and goal detail screens.
+  static LinearGradient mascotGlow({double opacity = 0.3}) {
+    final c = slothFur.withOpacity(opacity);
+    return LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [c, Colors.transparent, c],
+      stops: const [0.0, 0.5, 1.0],
+    );
+  }
 }
