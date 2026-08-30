@@ -1,0 +1,79 @@
+name: Build TrackMe APK
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.5'
+          channel: 'stable'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-flutter-
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build APK (Release)
+        run: flutter build apk --release
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/app/outputs/flutter-apk/app-release.apk
+          tag_name: v1.0.0
+          release_name: TrackMe Social - Release APK v1.0.0
+          body: |
+            ## TrackMe Social - APK Download
+            **Download the APK below and install on your Android phone!**
+            
+            ### Features:
+            - 🔐 JWT Authentication (Login/Signup)
+            - 📊 Goal tracking with streaks
+            - 🏆 Badge system (Common/Rare/Epic/Legendary)
+            - 👥 Public profiles with social discovery
+            - 🔍 Search users by username
+            - 📱 Beautiful colorful UI
+            
+            ### Installation:
+            1. Download `app-release.apk`
+            2. Enable "Install from unknown sources" on your phone
+            3. Open and install the APK
+            4. Configure backend URL in app settings
+            
+            ### Backend Setup:
+            Deploy the backend from the `/app` directory using Docker or run directly.
+        draft: false
+        prerelease: false
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trackme-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
