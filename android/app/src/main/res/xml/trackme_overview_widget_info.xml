@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  No android:configure here — unlike the single-goal widget, this one
+  always shows the user's own top goals automatically, so there's nothing
+  to ask the user to pick.
+-->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="250dp"
+    android:minHeight="300dp"
+    android:targetCellWidth="4"
+    android:targetCellHeight="6"
+    android:maxResizeWidth="250dp"
+    android:maxResizeHeight="580dp"
+    android:minResizeWidth="180dp"
+    android:minResizeHeight="300dp"
+    android:resizeMode="vertical"
+    android:widgetCategory="home_screen"
+    android:updatePeriodMillis="0"
+    android:initialLayout="@layout/widget_overview"
+    android:description="@string/overview_widget_label">
+</appwidget-provider>

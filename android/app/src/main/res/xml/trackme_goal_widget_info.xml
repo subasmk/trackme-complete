@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  minWidth/minHeight ≈ a slightly-more-generous "Small" placement than a
+  bare 2x2 cell; 110dp left no real room for a properly-sized mascot next
+  to legible streak text, which is exactly why it looked tiny/tucked-away.
+  140dp still reads as compact but gives the mascot a real presence.
+  maxResizeWidth stretches to roughly 4 cells wide so the user can drag it
+  out to the "Medium" size shown in the mockup. TrackMeGoalWidgetProvider
+  reveals the goal title and week strip once the measured width crosses
+  that threshold.
+  updatePeriodMillis="0": TrackMe never polls. Every redraw is pushed
+  explicitly from Dart right after a completion/add/edit/delete (see
+  HomeWidgetService.syncGoals), so there's nothing for a periodic timer to
+  do and it would only cost battery.
+-->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="140dp"
+    android:minHeight="120dp"
+    android:targetCellWidth="2"
+    android:targetCellHeight="2"
+    android:maxResizeWidth="250dp"
+    android:maxResizeHeight="180dp"
+    android:minResizeWidth="140dp"
+    android:minResizeHeight="120dp"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:updatePeriodMillis="0"
+    android:initialLayout="@layout/widget_goal"
+    android:configure="com.trackme.app.WidgetConfigureActivity"
+    android:description="@string/goal_widget_label">
+</appwidget-provider>

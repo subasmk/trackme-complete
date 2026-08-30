@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TrackMe</string>
+
+    <!-- Goal widget (single-goal streak) -->
+    <string name="goal_widget_label">TrackMe Goal Streak</string>
+    <string name="widget_open_app">Open TrackMe to set up this widget</string>
+
+    <!-- Overview widget (multi-goal summary) -->
+    <string name="overview_widget_label">TrackMe Overview</string>
+
+    <!-- Quest widget -->
+    <string name="quest_widget_label">TrackMe Quests</string>
+
+    <!-- Widget configure activity -->
+    <string name="widget_configure_title">Choose a Goal</string>
+    <string name="widget_configure_subtitle">Pick a goal for the widget to track.</string>
+    <string name="widget_configure_hint">Select which goal this widget will track</string>
+    <string name="widget_add_button">Add Widget</string>
+    <string name="widget_configure_empty">No goals yet — add some in the app first.</string>
+    <string name="widget_keep_it_up">Keep it up!</string>
+    <string name="widget_stay_consistent">Stay consistent.</string>
+    <string name="widget_achieve_more">Achieve more with momentum.</string>
+    <string name="widget_nice_work">Nice work — keep that streak alive.</string>
+    <string name="widget_dont_lose_streak">Do not lose your streak now.</string>
+    <string name="widget_getting_late">It is getting late — finish this goal soon.</string>
+    <string name="widget_start_streak">Start your streak with your first goal.</string>
+    <string name="widget_no_goals">No goals yet — add some in the app first</string>
+
+    <!-- General -->
+    <string name="streak_days">day streak</string>
+    <string name="completed_today">Completed today</string>
+</resources>

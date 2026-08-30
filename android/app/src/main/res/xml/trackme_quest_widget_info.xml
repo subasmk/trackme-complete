@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Quest overview widget info.
+  minWidth/minHeight = a comfortable "Medium" cell (~3x2).
+  updatePeriodMillis="0": TrackMe never polls. Every redraw is pushed
+  explicitly from Dart after any quest change (see HomeWidgetService.syncQuests).
+-->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="180dp"
+    android:minHeight="120dp"
+    android:targetCellWidth="3"
+    android:targetCellHeight="2"
+    android:maxResizeWidth="300dp"
+    android:maxResizeHeight="180dp"
+    android:minResizeWidth="140dp"
+    android:minResizeHeight="100dp"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:updatePeriodMillis="0"
+    android:initialLayout="@layout/widget_quest"
+    android:description="@string/quest_widget_label">
+</appwidget-provider>

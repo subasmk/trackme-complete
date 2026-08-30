@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Single-goal streak widget (TrackMeGoalWidgetProvider). One instance is
+  bound to one goal via WidgetConfigureActivity. Resizable by the user from
+  a compact "Small" size up to a "Medium" size; TrackMeGoalWidgetProvider
+  toggles goal_title/week_row visibility in onAppWidgetOptionsChanged based
+  on the measured width, so this single layout covers both mockup sizes.
+
+  Mascot sits in its own side-by-side column (not absolutely positioned
+  over the content, so it can never overlap the week strip's last day
+  cell), and shares the card's own gradient directly (no separate darker
+  panel), so it reads as one integrated card rather than two zones.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_widget_purple_gradient">
+
+    <LinearLayout
+        android:id="@+id/content_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.4"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="6dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
+
+            <!-- Goal title: hidden at the compact "Small" size, shown at "Medium". -->
+            <TextView
+                android:id="@+id/goal_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="Goal"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:text="🔥"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/streak_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="0 days"
+                    android:textColor="@color/text_primary"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:shadowColor="#33000000"
+                    android:shadowDx="0"
+                    android:shadowDy="2"
+                    android:shadowRadius="3" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/subtitle_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/widget_keep_it_up"
+                android:textColor="@color/text_on_purple_muted"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <!-- Week strip: hidden at "Small" size, shown at "Medium". Each
+                 cell is a flame emoji whose opacity (set in Kotlin) carries
+                 the done/today/pending state, sitting on the same pill
+                 backgrounds as before. -->
+            <LinearLayout
+                android:id="@+id/week_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <LinearLayout style="@style/WidgetDayCell">
+                    <TextView style="@style/WidgetDayLetter" android:text="S" />
+                    <TextView android:id="@+id/day_0_circle" style="@style/WidgetDayCircle" android:text="🔥" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/WidgetDayCell">
+                    <TextView style="@style/WidgetDayLetter" android:text="M" />
+                    <TextView android:id="@+id/day_1_circle" style="@style/WidgetDayCircle" android:text="🔥" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/WidgetDayCell">
+                    <TextView style="@style/WidgetDayLetter" android:text="T" />
+                    <TextView android:id="@+id/day_2_circle" style="@style/WidgetDayCircle" android:text="🔥" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/WidgetDayCell">
+                    <TextView style="@style/WidgetDayLetter" android:text="W" />
+                    <TextView android:id="@+id/day_3_circle" style="@style/WidgetDayCircle" android:text="🔥" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/WidgetDayCell">
+                    <TextView style="@style/WidgetDayLetter" android:text="T" />
+                    <TextView android:id="@+id/day_4_circle" style="@style/WidgetDayCircle" android:text="🔥" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/WidgetDayCell">
+                    <TextView style="@style/WidgetDayLetter" android:text="F" />
+                    <TextView android:id="@+id/day_5_circle" style="@style/WidgetDayCircle" android:text="🔥" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/WidgetDayCell">
+                    <TextView style="@style/WidgetDayLetter" android:text="S" />
+                    <TextView android:id="@+id/day_6_circle" style="@style/WidgetDayCircle" android:text="🔥" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Mascot column: uses the full-body photographic sloth PNGs so
+             the widget matches the stacked-card reference exactly.
+             The image is bottom-aligned and slightly overflows the card
+             height (same trick Duolingo uses) to give it visual weight
+             without reducing the text area. -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clipChildren="false">
+
+            <ImageView
+                android:id="@+id/sloth_image"
+                android:layout_width="96dp"
+                android:layout_height="88dp"
+                android:layout_gravity="bottom|end"
+                android:scaleType="fitEnd"
+                android:src="@drawable/sloth_happy" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- Shown instead of everything above when this widget instance has no
+         goal configured yet (e.g. its goal was deleted in-app). -->
+    <LinearLayout
+        android:id="@+id/empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/widget_open_app"
+            android:textColor="@color/text_primary"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium" />
+    </LinearLayout>
+</FrameLayout>

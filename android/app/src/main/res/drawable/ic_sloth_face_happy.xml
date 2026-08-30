@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Happy variant of ic_sloth_face.xml — same head/ears/patches/cheeks/nose
+  (unchanged from the base file), with a wider smile and slightly bigger,
+  brighter eyes. Shown by TrackMeGoalWidgetProvider when today's goal is
+  already completed, mirroring how Duolingo's mascot expression shifts
+  with its message rather than staying static.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Ears -->
+    <path
+        android:pathData="M14,28 a12,12 0 1,0 24,0 a12,12 0 1,0 -24,0 Z"
+        android:fillColor="@color/sloth_fur" />
+    <path
+        android:pathData="M62,28 a12,12 0 1,0 24,0 a12,12 0 1,0 -24,0 Z"
+        android:fillColor="@color/sloth_fur" />
+
+    <!-- Base furry head -->
+    <path
+        android:pathData="M10,54 a40,40 0 1,0 80,0 a40,40 0 1,0 -80,0 Z"
+        android:fillColor="@color/sloth_fur" />
+
+    <!-- Cream face patch -->
+    <path
+        android:pathData="M23,58 a27,23 0 1,0 54,0 a27,23 0 1,0 -54,0 Z"
+        android:fillColor="@color/sloth_face" />
+
+    <!-- Dark "mask" eye patches -->
+    <path
+        android:pathData="M29,50 a9,12 0 1,0 18,0 a9,12 0 1,0 -18,0 Z"
+        android:fillColor="@color/sloth_eye_patch" />
+    <path
+        android:pathData="M53,50 a9,12 0 1,0 18,0 a9,12 0 1,0 -18,0 Z"
+        android:fillColor="@color/sloth_eye_patch" />
+
+    <!-- Rosy cheeks (slightly warmer/bigger for a happy flush) -->
+    <path
+        android:pathData="M22.5,61.5 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 Z"
+        android:fillColor="@color/sloth_cheek" />
+    <path
+        android:pathData="M66.5,61.5 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 Z"
+        android:fillColor="@color/sloth_cheek" />
+
+    <!-- Eyes: bigger, with a small white highlight for a bright, pleased look -->
+    <path
+        android:pathData="M34.2,48.2 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0 Z"
+        android:fillColor="@color/sloth_eye" />
+    <path
+        android:pathData="M58.2,48.2 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0 Z"
+        android:fillColor="@color/sloth_eye" />
+    <path
+        android:pathData="M36,46.4 a1.3,1.3 0 1,0 2.6,0 a1.3,1.3 0 1,0 -2.6,0 Z"
+        android:fillColor="#FFFFFFFF" />
+    <path
+        android:pathData="M60,46.4 a1.3,1.3 0 1,0 2.6,0 a1.3,1.3 0 1,0 -2.6,0 Z"
+        android:fillColor="#FFFFFFFF" />
+
+    <!-- Nose -->
+    <path
+        android:pathData="M45.5,63 a4.5,3.2 0 1,0 9,0 a4.5,3.2 0 1,0 -9,0 Z"
+        android:fillColor="@color/sloth_eye_patch" />
+
+    <!-- Wide, open smile -->
+    <path
+        android:pathData="M36,66 Q50,80 64,66"
+        android:strokeColor="@color/sloth_eye_patch"
+        android:strokeWidth="2.6"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+</vector>

@@ -1,0 +1,34 @@
+# docker-compose.yml - TrackMe Backend Deployment
+
+version: '3.8'
+
+services:
+  trackme-backend:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:trackme_password@postgres:5432/trackme
+      - SECRET_KEY=trackme-super-secret-key-change-in-production-2024
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    volumes:
+      - ./app:/app
+      - ./migrations:/migrations
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=trackme_password
+      - POSTGRES_DB=trackme
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

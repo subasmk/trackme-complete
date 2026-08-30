@@ -1,0 +1,93 @@
+# script.py.migrations - Alembic migration script
+
+from datetime import datetime
+from alembic import op
+import sqlalchemy as sa
+
+# Revision identifiers, used by Alembic.
+revision = '1.0.0'
+down_revision = None
+branch_labels = None
+depends_on = None
+
+def upgrade():
+    # Create users table
+    op.create_table(
+        'users',
+        sa.Column('id', sa.Integer(), primary_key=True),
+        sa.Column('username', sa.String(50), unique=True, nullable=False),
+        sa.Column('email', sa.String(255), unique=True, nullable=False),
+        sa.Column('password_hash', sa.String(255), nullable=False),
+        sa.Column('bio', sa.Text(), nullable=True),
+        sa.Column('avatar_url', sa.String(500), nullable=True),
+        sa.Column('is_public', sa.Boolean(), default=True),
+        sa.Column('created_at', sa.DateTime(), default=datetime.utcnow)
+    )
+    
+    # Create goals table
+    op.create_table(
+        'goals',
+        sa.Column('id', sa.Integer(), primary_key=True),
+        sa.Column('user_id', sa.Integer(), sa.ForeignKey('users.id'), nullable=False),
+        sa.Column('title', sa.String(100), nullable=False),
+        sa.Column('description', sa.Text(), nullable=True),
+        sa.Column('category', sa.String(50), nullable=True),
+        sa.Column('target_streak', sa.Integer(), default=0),
+        sa.Column('current_streak', sa.Integer(), default=0),
+        sa.Column('longest_streak', sa.Integer(), default=0),
+        sa.Column('last_checkin_date', sa.DateTime(), nullable=True),
+        sa.Column('is_active', sa.Boolean(), default=True),
+        sa.Column('created_at', sa.DateTime(), default=datetime.utcnow)
+    )
+    
+    # Create badges table
+    op.create_table(
+        'badges',
+        sa.Column('id', sa.Integer(), primary_key=True),
+        sa.Column('name', sa.String(100), nullable=False),
+        sa.Column('description', sa.Text(), nullable=True),
+        sa.Column('icon_url', sa.String(500), nullable=True),
+        sa.Column('criteria', sa.JSON(), nullable=True),
+        sa.Column('rarity', sa.String(20), default='common'),
+        sa.Column('created_at', sa.DateTime(), default=datetime.utcnow)
+    )
+    
+    # Create user_badges table
+    op.create_table(
+        'user_badges',
+        sa.Column('id', sa.Integer(), primary_key=True),
+        sa.Column('user_id', sa.Integer(), sa.ForeignKey('users.id'), nullable=False),
+        sa.Column('badge_id', sa.Integer(), sa.ForeignKey('badges.id'), nullable=False),
+        sa.Column('earned_at', sa.DateTime(), default=datetime.utcnow)
+    )
+    
+    # Create checkins table
+    op.create_table(
+        'checkins',
+        sa.Column('id', sa.Integer(), primary_key=True),
+        sa.Column('user_id', sa.Integer(), sa.ForeignKey('users.id'), nullable=False),
+        sa.Column('goal_id', sa.Integer(), sa.ForeignKey('goals.id'), nullable=False),
+        sa.Column('date', sa.DateTime(), default=datetime.utcnow),
+        sa.Column('notes', sa.Text(), nullable=True),
+        sa.Column('learning_summary', sa.Text(), nullable=True),
+        sa.Column('mood', sa.Integer(), default=3),
+        sa.Column('location', sa.String(100), nullable=True),
+        sa.Column('evidence_url', sa.String(500), nullable=True)
+    )
+    
+    # Create indexes
+    op.create_index('idx_user_username', 'users', ['username'])
+    op.create_index('idx_goal_user', 'goals', ['user_id'])
+    op.create_index('idx_checkin_user', 'checkins', ['user_id'])
+    op.create_index('idx_checkin_date', 'checkins', ['date'])
+
+def downgrade():
+    op.drop_index('idx_checkin_date', table_name='checkins')
+    op.drop_index('idx_checkin_user', table_name='checkins')
+    op.drop_index('idx_goal_user', table_name='goals')
+    op.drop_index('idx_user_username', table_name='users')
+    op.drop_table('checkins')
+    op.drop_table('user_badges')
+    op.drop_table('badges')
+    op.drop_table('goals')
+    op.drop_table('users')
