@@ -1,4 +1,4 @@
-package com.trackme.app
+package com.subasmk.trackmecomplete
 
 import android.appwidget.AppWidgetManager
 import android.content.Context

@@ -1,110 +1,81 @@
+// widget_themes.dart - Additional color palettes for custom widgets
+// Add to the same directory as app_colors.dart
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
-/// One selectable color theme for a goal. The three stops mirror what's
-/// needed on both sides of the app: [light]→[dark] make a Flutter
-/// [LinearGradient], and the same three hex values are duplicated as
-/// Android color resources (see android colors.xml, `theme_<id>_light/
-/// mid/dark`) so a goal's widget matches its in-app card exactly.
-class WidgetTheme {
-  final String id;
-  final String label;
-  final Color light;
-  final Color mid;
-  final Color dark;
+/// Color palettes for the colorful custom goal widgets
+/// (solar/aqua/lavender/forest themes - separate from the main app colors)
+class ColorPalettes {
+  ColorPalettes._();
 
-  const WidgetTheme({
-    required this.id,
-    required this.label,
-    required this.light,
-    required this.mid,
-    required this.dark,
-  });
+  // --- Solar Theme: Warm oranges and yellows ---
+  static const Color solarOrangeLight = Color(0xFFFFB347);
+  static const Color solarOrangeMid = Color(0xFFFF6B35);
+  static const Color solarOrangeDeep = Color(0xFFE63946);
+  static const Color solarYellowLight = Color(0xFFF4A261);
+  static const Color solarYellowMid = Color(0xFFFFC15E);
+  static const Color solarYellowDeep = Color(0xFFFF7A45);
 
-  LinearGradient get gradient => LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [light, mid, dark],
-      );
-}
-
-/// The curated palette a goal can be assigned to — deliberately a small,
-/// hand-picked set (like Duolingo's own course colors) rather than an
-/// open-ended color wheel, so every combination still looks intentional.
-class WidgetThemes {
-  WidgetThemes._();
-
-  // Reuses AppColors' existing purple ramp directly (rather than
-  // duplicating its hex values here) so a goal left on the default
-  // "Purple" theme matches the app's own signature purple — e.g. the home
-  // screen's overall streak card — exactly, with no drift possible between
-  // the two.
-  static const purple = WidgetTheme(
-    id: 'purple',
-    label: 'Purple',
-    light: AppColors.purpleLight,
-    mid: AppColors.purpleMid,
-    dark: AppColors.purpleDeep,
+  static const LinearGradient solarGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [solarOrangeLight, solarOrangeMid, solarOrangeDeep],
+    stops: [0.0, 0.5, 1.0],
   );
 
-  static const mint = WidgetTheme(
-    id: 'mint',
-    label: 'Mint',
-    light: Color(0xFF6EE7B7),
-    mid: Color(0xFF10B981),
-    dark: Color(0xFF047857),
+  // --- Aqua Theme: Cool blues and teals ---
+  static const Color aquaTealLight = Color(0xFF83C5BE);
+  static const Color aquaTealMid = Color(0xFF268B83);
+  static const Color aquaTealDeep = Color(0xFF006D77);
+  static const Color aquaBlueLight = Color(0xFF5F27CD);
+  static const Color aquaBlueMid = Color(0xFF6C5CE7);
+  static const Color aquaBlueDeep = Color(0xFF4A2CFF);
+
+  static const LinearGradient aquaGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [aquaTealLight, aquaTealMid, aquaTealDeep],
+    stops: [0.0, 0.5, 1.0],
   );
 
-  static const flame = WidgetTheme(
-    id: 'flame',
-    label: 'Flame',
-    light: Color(0xFFFFB74D),
-    mid: Color(0xFFFF9500),
-    dark: Color(0xFFC2410C),
+  // --- Lavender Theme: Purple and magenta ---
+  static const Color lavenderLight = Color(0xFFBF5AF2);
+  static const Color lavenderMid = Color(0xFF8B5CF6);
+  static const Color lavenderDeep = Color(0xFF7C3AED);
+  static const Color lavenderPinkLight = Color(0xFFEC4899);
+  static const Color lavenderPinkMid = Color(0xFFF472B6);
+  static const Color lavenderPinkDeep = Color(0xFFF97316);
+
+  static const LinearGradient lavenderGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [lavenderLight, lavenderMid, lavenderDeep],
+    stops: [0.0, 0.5, 1.0],
   );
 
-  static const sky = WidgetTheme(
-    id: 'sky',
-    label: 'Sky',
-    light: Color(0xFF7DD3FC),
-    mid: Color(0xFF0EA5E9),
-    dark: Color(0xFF0369A1),
+  // --- Forest Theme: Greens and earth tones ---
+  static const Color forestGreenLight = Color(0xFF84CC16);
+  static const Color forestGreenMid = Color(0xFF2A9D8F);
+  static const Color forestGreenDeep = Color(0xFF1F834D);
+  static const Color forestLimeLight = Color(0xFFA8D51D);
+  static const Color forestLimeMid = Color(0xFF7EE787);
+  static const Color forestLimeDeep = Color(0xFF2F855A);
+
+  static const LinearGradient forestGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [forestGreenLight, forestGreenMid, forestGreenDeep],
+    stops: [0.0, 0.5, 1.0],
   );
 
-  static const berry = WidgetTheme(
-    id: 'berry',
-    label: 'Berry',
-    light: Color(0xFFF9A8D4),
-    mid: Color(0xFFEC4899),
-    dark: Color(0xFF9D174D),
-  );
-
-  static const coral = WidgetTheme(
-    id: 'coral',
-    label: 'Coral',
-    light: Color(0xFFFCA5A5),
-    mid: Color(0xFFEF4444),
-    dark: Color(0xFF991B1B),
-  );
-
-  static const gold = WidgetTheme(
-    id: 'gold',
-    label: 'Gold',
-    light: Color(0xFFFDE68A),
-    mid: Color(0xFFF59E0B),
-    dark: Color(0xFFB45309),
-  );
-
-  static const List<WidgetTheme> all = [
-    purple,
-    mint,
-    flame,
-    sky,
-    berry,
-    coral,
-    gold,
-  ];
-
-  static WidgetTheme byId(String? id) =>
-      all.firstWhere((t) => t.id == id, orElse: () => purple);
+  /// Get gradient for a specific theme
+  static LinearGradient getGradient(String theme) {
+    switch (theme) {
+      case 'solar': return solarGradient;
+      case 'aqua': return aquaGradient;
+      case 'lavender': return lavenderGradient;
+      case 'forest': return forestGradient;
+      default: return AppColors.primaryGradient;
+    }
+  }
 }

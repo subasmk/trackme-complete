@@ -1,10 +1,9 @@
 // custom_goal_widget.dart - Colorful custom goal widget with sloth mascot
-// Matches the style shown in the reference image: colorful gradient cards,
-// daily check markers, streak counters, and expressive sloth designs
-
+// Uses the new widget_themes.dart for additional color themes
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../theme/app_colors.dart';
+import '../theme/widget_themes.dart';
 import '../theme/app_spacing.dart';
 import 'sloth_mascot.dart';
 
@@ -46,11 +45,11 @@ class CustomGoalWidget extends StatelessWidget {
   /// Get day pill color based on theme
   Color get dayPillColor {
     switch (theme) {
-      case 'aqua': return AppColors.aquaTealMid;
-      case 'lavender': return AppColors.lavenderMid;
-      case 'forest': return AppColors.forestGreenMid;
+      case 'aqua': return ColorPalettes.aquaTealMid;
+      case 'lavender': return ColorPalettes.lavenderMid;
+      case 'forest': return ColorPalettes.forestGreenMid;
       case 'solar':
-      default: return AppColors.solarOrangeMid;
+      default: return ColorPalettes.solarOrangeMid;
     }
   }
 
@@ -269,10 +268,10 @@ class ColorfulGoalCard extends StatelessWidget {
   });
 
   static const Map<String, List<Color>> presetGradients = {
-    'solar': [Color(0xFFFFB347), Color(0xFFFF6B35)],
-    'aqua': [Color(0xFF83C5BE), Color(0xFF268B83)],
-    'lavender': [Color(0xFFBF5AF2), Color(0xFF8B5CF6)],
-    'forest': [Color(0xFF84CC16), Color(0xFF2A9D8F)],
+    'solar': [ColorPalettes.solarOrangeLight, ColorPalettes.solarOrangeMid],
+    'aqua': [ColorPalettes.aquaTealLight, ColorPalettes.aquaTealMid],
+    'lavender': [ColorPalettes.lavenderLight, ColorPalettes.lavenderMid],
+    'forest': [ColorPalettes.forestGreenLight, ColorPalettes.forestGreenMid],
     'sunset': [Color(0xFFF48FB1), Color(0xFFF992B8)],
     'ocean': [Color(0xFF74B9FF), Color(0xFF0984E3)],
     'fire': [Color(0xFFFF6B35), Color(0xFFE84393)],
