@@ -32,7 +32,7 @@ dependencies:
   package_info_plus: ^5.0.0
   shimmer: ^0.6.0
   dotted_border: ^2.1.0
-  blurhash_flutter: ^0.3.0
+  blurhash_flutter: ^0.1.0
   carousel_slider: ^4.2.1
   dots_indicator: ^2.1.0
 
