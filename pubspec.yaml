@@ -14,7 +14,7 @@ dependencies:
   flutter_slidable: ^3.0.1
   url_launcher: ^6.1.11
   permission_handler: ^10.4.3
-  work_manager: ^0.5.2
+  workmanager: ^0.5.2
   http: ^1.1.0
   flutter_local_notifications: ^17.0.0
   flutter_widget_from_html: ^0.14.0
