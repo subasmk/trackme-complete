@@ -32,22 +32,20 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.pub-cache
-          key: ${{ runner.os }}-flutter-${{ hashFiles('trackme_modified/pubspec.lock') }}
+          key: ${{ runner.os }}-flutter-${{ hashFiles('pubspec.lock') }}
           restore-keys: |
             ${{ runner.os }}-flutter-
 
       - name: Install dependencies
         run: flutter pub get
-        working-directory: trackme_modified
 
       - name: Build APK (Release)
         run: flutter build apk --release
-        working-directory: trackme_modified
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: trackme_modified/build/app/outputs/flutter-apk/app-release.apk
+          files: build/app/outputs/flutter-apk/app-release.apk
           tag_name: v1.0.0
           release_name: TrackMe Social - Release APK v1.0.0
           body: |
@@ -73,4 +71,4 @@ jobs:
             - 👥 **Social Features** - Share achievements, compete with friends
             - 🎨 **Customizable UI** - Dark theme with vibrant accent colors
             
-            **File:** `trackme_modified/build/app/outputs/flutter-apk/app-release.apk`
+            **File:** `build/app/outputs/flutter-apk/app-release.apk`
