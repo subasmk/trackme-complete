@@ -1,42 +1,76 @@
 name: Build TrackMe APK
 
-# Runs automatically on every push, and can also be triggered manually from
-# the "Actions" tab on GitHub (the workflow_dispatch trigger below) without
-# needing to push a new commit each time.
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Java 17
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.5'
+          channel: 'stable'
+
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v3
         with:
-          channel: 'stable'
-          cache: true
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-flutter-${{ hashFiles('trackme_modified/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-flutter-
 
       - name: Install dependencies
         run: flutter pub get
+        working-directory: trackme_modified
 
-      - name: Build release APK
+      - name: Build APK (Release)
         run: flutter build apk --release
+        working-directory: trackme_modified
 
-      # Shows up as a downloadable .zip under the finished run's "Artifacts"
-      # section — unzip it to get app-release.apk.
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: trackme-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          files: trackme_modified/build/app/outputs/flutter-apk/app-release.apk
+          tag_name: v1.0.0
+          release_name: TrackMe Social - Release APK v1.0.0
+          body: |
+            ## TrackMe Social - APK Download
+            **Download the APK below and install on your Android phone!**
+            
+            ### Features:
+            - 🔐 **Secure JWT Authentication** - Login, signup, session management
+            - 🏆 **8 Unique Badges** - Common/Rare/Epic/Legendary with social features
+            - 📊 **Goal Streaks** - Track daily streaks with visual progress
+            - 🎨 **4 Color Themes** - Solar (warm oranges/yellows), Aqua (blues/teals), Lavender (purple/magenta), Forest (greens)
+            - 🎯 **User Search** - Find friends by username, public profiles
+            - 📱 **Home Screen Widgets** - TrackMe app widgets for Android home screen
+            - 📍 **Location Tracking** - Track location achievements and goal-based location rewards
+            - 🔔 **Local Notifications** - Goal reminders, achievement notifications
+            - 🗺️ **Interactive Maps** - Explore nearby goals and share locations
+            - 📝 **Notes & Attachments** - Add notes with images, documents, and web links to goals
+            - ✅ **To-Do Lists** - Task management within goals
+            - 🏠 **Habit Tracking** - Daily habits with streak tracking
+            - ⏰ **Focus Timers** - Time management for productivity
+            - 🧠 **Goal Categories** - Organize goals by type
+            - 📈 **Progress Charts** - Visual analytics for goal completion
+            - 👥 **Social Features** - Share achievements, compete with friends
+            - 🎨 **Customizable UI** - Dark theme with vibrant accent colors
+            
+            **File:** `trackme_modified/build/app/outputs/flutter-apk/app-release.apk`
